@@ -1,48 +1,183 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
-  <script src="/assets/js/cdn-rocket.js?v=3" defer></script>
-  <link rel="stylesheet" href="/assets/css/app.css?v=3">
-  <link rel="stylesheet" href="/assets/css/menu.css?v=3">
-  <script rel="preload" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js?v=3"></script>
-  <script src="/assets/js/anym.js?v=3"></script>
-  <title>Dashboard | Salyte</title>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YEQ7Q0XRC"></script>
-  <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6YEQ7Q0XRC');</script>
-</head>
-<body>
-  <script src="/baremux/index.js?v=3"></script>
-  <script src="/wk/wk2.js?v=3"></script>
-  <script src="/wk/wk3.js?v=3"></script>
-<div id="contextMenu" class="context-menu themesExcluded" style="--ripple-duration: 300ms;"><div class="context-menu-item with-submenu themesExcluded" id="contextItem" anim="ripple" onclick="toggleSubmenu(event)"><i class="bi bi-file-spreadsheet"></i> Tab Cloak</div><div class="context-submenu themesExcluded" id="contextItem"><div class="context-menu-item themesExcluded" id="contextItem" anim="ripple" onclick="tabCloak()">Enable</div><div class="context-menu-item themesExcluded" anim="ripple" onclick="disableTabCloak()">Disable</div></div><div class="context-menu-item themesExcluded" id="contextItem" onclick="visitSite()"><i class="bi bi-clock-history"></i> Last Visited Site</div><div class="context-menu-item themesExcluded" id="contextItem" onclick="openWindow()"><i class="bi bi-box-arrow-up-right"></i> About:Blank Cloak</div><div class="context-menu-item themesExcluded" id="contextItem" onclick="openSettings()"><i class="bi bi-gear"></i> View all Settings</div></div>
-<nav id="mytopnav">
-  <button class="btn-main" anim="ripple" onclick="send('/settings.html')"><i class="bi bi-gear" style="font-size:30px;"></i>Settings</button>
-  <button class="btn-main" anim="ripple" onclick="send('/gms')"><i class="bi bi-joystick" style="font-size:30px;"></i>Games</button>
-  <button class="btn-main" anim="ripple" onclick="send('/apps')"><i class="bi bi-grid-fill" style="font-size:30px;"></i>Apps</button><br>
-  <a href="#" class="title" anim="ripple"><img src="/assets/img/doge2.jpg" style="width:22px;height:22px;" id="logo"> Doge Unblocker</a>    
-</nav>
-  <div style="text-align:center;color:white;margin-top: 80px;z-index:1;" class="themesExcluded">
-    <div class="themesExcluded">
-      <i class="bi bi-search search" id="search"></i>
-      <form method="POST" id="uform" autocomplete="off" class="themesExcluded" style="z-index:1;">
-        <input type="text" name="url" class="browse-input themesExcluded" style="font-family:poppins;font-size:20px;z-index:1;" placeholder="Type URL or search query"><p class="splashText themesExcluded" id="placeholder"></p>
-      </form>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Sapphire | The new way to view the web</title>
+    <meta name="description" content="Sapphire is a highly sophisticated proxy used for evading internet censorship." />
+    <meta name="theme-color" content="#434c5e" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="/assets/css/app.css?v=3" />
+    <link rel="stylesheet" href="/assets/css/menu.css?v=3" />
+    <script src="/baremux/index.js?v=3" defer></script>
+    <script src="/wk/wk2.js?v=3" defer></script>
+    <script src="/wk/wk3.js?v=3" defer></script>
+    <script src="/assets/js/cdn-rocket.js?v=3" defer></script>
+    <script src="/assets/js/anym.js?v=3" defer></script>
+    <script src="/assets/js/main.js?v=3" defer></script>
+    <script src="/assets/js/index.js?v=3" defer></script>
+    <script src="/assets/js/themes.js?v=3" defer></script>
+    <script src="/assets/js/particles.js?v=3" defer></script>
+    <script src="/assets/js/register.js?v=3" defer></script>
+    <script src="epoxy/index.js" defer></script>
+    <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script src="register-sw.js" defer></script>
+    <script src="search.js" defer></script>
+    <script src="index.js" defer></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background: url('bg.gif') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        text-align: center;
+        padding: 2em;
+      }
+      .logo-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2em;
+        animation: float 5s ease-in-out infinite;
+      }
+      .logo {
+        width: 100px;
+        height: auto;
+      }
+      h1 {
+        margin-top: 0.5em;
+        font-size: 2em;
+      }
+      .desc, form#uv-form {
+        opacity: 0;
+        animation: fadeIn 0.5s ease-in forwards;
+      }
+      @keyframes fadeIn { to { opacity: 1; } }
+      form#uv-form {
+        transform: translateY(20px);
+        animation: slideUp 1s ease-out forwards;
+        animation-delay: 0.5s;
+      }
+      @keyframes slideUp {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      input#uv-address {
+        width: 100%;
+        padding: 1em;
+        border: none;
+        border-radius: 10px;
+        font-size: 1em;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+      input#uv-address::placeholder {
+        color: white;
+        opacity: 0.7;
+      }
+      footer {
+        margin-top: 4em;
+        opacity: 0.7;
+      }
+      }
+      form#uv-form {
+        margin: 2em auto;
+        max-width: 600px;
+      }
+      a {
+        color: #add8e6;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      a:hover {
+        color: #ffffff;
+        text-shadow: 0 0 5px #add8e6;
+      }
+      .btn-main {
+        margin: 5px;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid #fff;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .btn-main:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Logo/Header -->
+    <div title="Sapphire Logo" class="logo-wrapper header-center">
+      <img class="logo" src="uv.png" alt="The stone of Sapphire" />
+      <h1>Sapphire</h1>
     </div>
-    <div class="footer themesExcluded" style="text-align:right;">
-      <a href="https://discord.gg/sWPHCdxCPU" target="new"><i class="bi bi-discord"></i></a>
-      <a href="https://github.com/dogenetwork/v4" target="new"><i class="bi bi-github"></i></a>
+
+    <!-- Salyte Buttons -->
+    <div style="margin-bottom: 20px;">
+      <button class="btn-main" onclick="send('/settings.html')">
+        <i class="bi bi-gear" style="font-size: 20px;"></i> Settings
+      </button>
+      <button class="btn-main" onclick="send('/gms')">
+        <i class="bi bi-joystick" style="font-size: 20px;"></i> Games
+      </button>
+      <button class="btn-main" onclick="send('/apps')">
+        <i class="bi bi-grid-fill" style="font-size: 20px;"></i> Apps
+      </button>
     </div>
-    <div class="bottom-right-content themesExcluded">
-    <a href="/info">Site Info</a>
-  </div>
-  <script src="/assets/js/main.js?v=3"></script>
-  <script src="/assets/js/index.js?v=3"></script>
-  <script src="/assets/js/themes.js?v=3"></script>
-  <script src="/assets/js/particles.js?v=3"></script>
-  <script src="/assets/js/register.js?v=3" defer></script>
-</div>
-</body>
+
+    <!-- Description -->
+    <div class="desc">
+      <p>Sapphire is a highly sophisticated proxy used for evading internet censorship.</p>
+    </div>
+
+<!-- Proxy Form -->
+<form id="uv-form" style="margin: 1em auto; max-width: 600px;">
+  <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
+  <input
+    id="uv-address"
+    type="text"
+    placeholder="Search the web freely"
+    style="width: 100%; height: 60px; font-size: 1.2em; padding: 0 1em; border-radius: 10px; background: rgba(255,255,255,0.1); border: none; color: white; box-shadow: 0 0 8px rgba(0,0,0,0.3);"
+  />
+</form>
+
+
+
+    <div class="desc">
+      <p id="uv-error"></p>
+      <pre id="uv-error-code"></pre>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div><a href="credits.html">Credits</a></div>
+      <div><span>Lapis Studios &copy; 2025-2026</span></div>
+      <div><a href="https://discord.gg/sWPHCdxCPU" target="_blank">Discord</a> | <a href="https://github.com/Project-Lapis/Sapphire-V2" target="_blank">GitHub</a></div>
+    </footer>
+
+    <!-- Context Menu (hidden by default) -->
+    <div id="contextMenu" class="context-menu themesExcluded" style="--ripple-duration: 300ms; display: none;">
+      <div class="context-menu-item with-submenu" onclick="toggleSubmenu(event)">
+        <i class="bi bi-file-spreadsheet"></i> Tab Cloak
+      </div>
+      <div class="context-submenu">
+        <div class="context-menu-item" onclick="tabCloak()">Enable</div>
+        <div class="context-menu-item" onclick="disableTabCloak()">Disable</div>
+      </div>
+      <div class="context-menu-item" onclick="visitSite()"><i class="bi bi-clock-history"></i> Last Visited Site</div>
+      <div class="context-menu-item" onclick="openWindow()"><i class="bi bi-box-arrow-up-right"></i> About:Blank Cloak</div>
+      <div class="context-menu-item" onclick="openSettings()"><i class="bi bi-gear"></i> View all Settings</div>
+    </div>
+
+    <!-- Hidden iframe for UV -->
+    <iframe style="display: none;" id="uv-frame"></iframe>
+  </body>
 </html>
